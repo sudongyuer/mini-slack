@@ -69,6 +69,12 @@ const HeaderSearch = styled.div`
 `
 const HeaderRight = styled.div`
 flex: 0.3;
+display: flex;
+align-items: center;
+> .MuiSvgIcon-root{
+  margin-left: auto;
+  margin-right: 20px;
+}
 `
 
 export default Header
