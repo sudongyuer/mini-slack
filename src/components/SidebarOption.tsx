@@ -5,10 +5,23 @@ import styled from 'styled-components'
 type SidebarOptionProps = {
   Icon: SvgIconComponent|null,
   title: string,
+  addChannelOption?: boolean
 }
-function SidebarOption({ Icon, title }: SidebarOptionProps) {
+
+
+function SidebarOption({ Icon, title,addChannelOption }: SidebarOptionProps) {
+
+const addChannel = ()=>{
+  console.log('add channel')
+}
+
+const selectChannel = ()=>{
+  console.log('select channel')
+}
   return (
-    <SidebarContainer>
+    <SidebarContainer
+    onClick={addChannelOption ? addChannel : selectChannel}
+    >
       {Icon && <Icon fontSize='small' style={{ padding: 10 }} />}
       {Icon ?(
         <h3>

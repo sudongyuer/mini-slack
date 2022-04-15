@@ -1,4 +1,4 @@
-import { Apps, BookmarkBorder, Create, Drafts, ExpandLess, FiberManualRecord, FileCopy, Inbox, InsertComment, PeopleAlt } from '@mui/icons-material';
+import { Add, Apps, BookmarkBorder, Create, Drafts, ExpandLess, ExpandMore, FiberManualRecord, FileCopy, Inbox, InsertComment, PeopleAlt } from '@mui/icons-material';
 import React from 'react'
 import styled from 'styled-components';
 import SidebarOption from './SidebarOption';
@@ -24,6 +24,10 @@ function Sidebar() {
       <SidebarOption Icon={Apps} title="Apps" />
       <SidebarOption Icon={FileCopy} title="File browser" />
       <SidebarOption Icon={ExpandLess} title="Show less" />
+      <hr />
+      <SidebarOption Icon={ExpandMore} title="Channels" />
+      <hr />
+      <SidebarOption Icon={Add} title="Add Channel" />
     </SidebarContainer>
   )
 }
@@ -37,6 +41,12 @@ color: white;
 border-top: 1px solid #49274b;
 max-width: 260px;
 margin-top: 46px;
+
+>  hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #49274b
+}
 `
 const SidebarHeader = styled.div`
 display: flex;
