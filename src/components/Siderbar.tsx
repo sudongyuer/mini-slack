@@ -1,6 +1,7 @@
-import { Create, FiberManualRecord } from '@mui/icons-material';
+import { Apps, BookmarkBorder, Create, Drafts, ExpandLess, FiberManualRecord, FileCopy, Inbox, InsertComment, PeopleAlt } from '@mui/icons-material';
 import React from 'react'
 import styled from 'styled-components';
+import SidebarOption from './SidebarOption';
 
 function Sidebar() {
   return (
@@ -9,12 +10,20 @@ function Sidebar() {
         <SidebarInfo>
           <h2>PAPA FAM HQ</h2>
           <h3>
-          <FiberManualRecord/>
-          Sudongyuer
+            <FiberManualRecord />
+            Sudongyuer
           </h3>
         </SidebarInfo>
-        <Create/>
+        <Create />
       </SidebarHeader>
+      <SidebarOption Icon={InsertComment} title="Threads" />
+      <SidebarOption Icon={Inbox} title="Mentions & reactions" />
+      <SidebarOption Icon={Drafts} title="Saved items" />
+      <SidebarOption Icon={BookmarkBorder} title="Channel browser" />
+      <SidebarOption Icon={PeopleAlt} title="People & user groups" />
+      <SidebarOption Icon={Apps} title="Apps" />
+      <SidebarOption Icon={FileCopy} title="File browser" />
+      <SidebarOption Icon={ExpandLess} title="Show less" />
     </SidebarContainer>
   )
 }
@@ -54,5 +63,11 @@ flex: 1;
   align-items: center;
   font-size: 13px;
   font-weight: 400;
+}
+> h3 > .MuiSvgIcon-root{
+    font-size: 14px;
+    margin-top: 1px;
+    margin-right: 2px;
+    color: green;
 }
 `;
