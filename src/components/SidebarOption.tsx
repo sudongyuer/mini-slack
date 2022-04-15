@@ -1,6 +1,8 @@
 import type { SvgIconComponent } from '@mui/icons-material'
 import React from 'react'
 import styled from 'styled-components'
+import {db} from '@/firebase'
+import { collection, addDoc } from "firebase/firestore";
 
 type SidebarOptionProps = {
   Icon: SvgIconComponent|null,
@@ -11,8 +13,17 @@ type SidebarOptionProps = {
 
 function SidebarOption({ Icon, title,addChannelOption }: SidebarOptionProps) {
 
-const addChannel = ()=>{
-  console.log('add channel')
+const addChannel = async ()=>{
+
+  const channelName = prompt('Please enter the channel name');
+  try {
+    const docRef = await addDoc(collection(db, "rooms"), {
+      name:channelName,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
 }
 
 const selectChannel = ()=>{

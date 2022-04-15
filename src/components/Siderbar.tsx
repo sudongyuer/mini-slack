@@ -27,7 +27,7 @@ function Sidebar() {
       <hr />
       <SidebarOption Icon={ExpandMore} title="Channels" />
       <hr />
-      <SidebarOption Icon={Add} title="Add Channel" />
+      <SidebarOption Icon={Add} title="Add Channel" addChannelOption/>
     </SidebarContainer>
   )
 }
