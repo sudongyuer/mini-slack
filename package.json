@@ -13,8 +13,10 @@
     "@mui/icons-material": "^5.6.1",
     "@mui/material": "^5.6.1",
     "@reduxjs/toolkit": "^1.8.1",
+    "add": "^2.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-firebase-hooks": "^5.0.3",
     "react-is": "^18.0.0",
     "react-router-dom": "^6.3.0",
     "styled-components": "^5.3.5"
