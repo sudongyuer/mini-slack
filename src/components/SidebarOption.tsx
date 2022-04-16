@@ -3,8 +3,8 @@ import React from 'react'
 import styled from 'styled-components'
 import {db} from '@/firebase'
 import { collection, addDoc } from "firebase/firestore";
-import { useDispatch, useSelector } from 'react-redux'
 import {enterRoom} from '@/features/appSlice'
+import { useAppDispatch } from '@/app/hooks';
 type SidebarOptionProps = {
   Icon?: SvgIconComponent,
   title: string,
@@ -14,7 +14,7 @@ type SidebarOptionProps = {
 
 
 function SidebarOption({ Icon, title,addChannelOption,id}: SidebarOptionProps) {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 const addChannel = async ()=>{
 
   const channelName = prompt('Please enter the channel name');
@@ -30,7 +30,7 @@ const addChannel = async ()=>{
 
 const selectChannel = ()=>{
   if(id){
-    dispatch(enterRoom({roomId : id}))
+    dispatch(enterRoom({roomId:id}))
   }
 }
   return (

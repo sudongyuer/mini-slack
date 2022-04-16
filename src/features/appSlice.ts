@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type initialState={
   roomId : string|null
@@ -10,7 +10,7 @@ export const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    enterRoom: (state, action) => {
+    enterRoom: (state, action:PayloadAction<initialState>) => {
       console.log(action);
       
       state.roomId = action.payload.roomId;
