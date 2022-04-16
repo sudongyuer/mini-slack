@@ -5,7 +5,7 @@ import {db} from '@/firebase'
 import { collection, addDoc } from "firebase/firestore";
 
 type SidebarOptionProps = {
-  Icon: SvgIconComponent|null,
+  Icon?: SvgIconComponent,
   title: string,
   addChannelOption?: boolean
 }
