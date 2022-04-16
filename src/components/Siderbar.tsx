@@ -2,8 +2,13 @@ import { Add, Apps, BookmarkBorder, Create, Drafts, ExpandLess, ExpandMore, Fibe
 import React from 'react'
 import styled from 'styled-components';
 import SidebarOption from './SidebarOption';
+import { useCollection } from "react-firebase-hooks/firestore";
+import { collection, addDoc } from "firebase/firestore";
+import {db} from '@/firebase'
 
 function Sidebar() {
+  const [channels,loading,error] = useCollection(collection(db, "rooms"))
+  console.log(channels)
   return (
     <SidebarContainer>
       <SidebarHeader>
@@ -28,6 +33,10 @@ function Sidebar() {
       <SidebarOption Icon={ExpandMore} title="Channels" />
       <hr />
       <SidebarOption Icon={Add} title="Add Channel" addChannelOption/>
+      {channels?.docs.map(channel=>{
+        return <SidebarOption  key={channel.id} title={channel.data().name} />
+      })
+      }
     </SidebarContainer>
   )
 }
