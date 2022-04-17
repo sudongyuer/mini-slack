@@ -4,6 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import Header from './components/Header';
 import styled from 'styled-components';
 import Sidebar from './components/Siderbar';
+import Chat from './components/Chat';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,7 +15,7 @@ function App() {
       <AppBody>
         <Sidebar />
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<Chat/>}/>
         </Routes>
       </AppBody>
     </div>
