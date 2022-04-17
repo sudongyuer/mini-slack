@@ -1,3 +1,4 @@
+import { RootState } from "@/app/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type initialState={
@@ -20,6 +21,6 @@ export const appSlice = createSlice({
 
 export const { enterRoom } = appSlice.actions;
 
-export const selectRoomId = (state:any) => state.app.roomId;
+export const selectRoomId = (state:RootState) => state.app.roomId;
 
 export default appSlice.reducer;
