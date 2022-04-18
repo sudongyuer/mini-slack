@@ -1,13 +1,13 @@
-import { Add, Apps, BookmarkBorder, Create, Drafts, ExpandLess, ExpandMore, FiberManualRecord, FileCopy, Inbox, InsertComment, PeopleAlt } from '@mui/icons-material';
+import { Add, Apps, BookmarkBorder, Create, Drafts, ExpandLess, ExpandMore, FiberManualRecord, FileCopy, Inbox, InsertComment, PeopleAlt } from '@mui/icons-material'
 import React from 'react'
-import styled from 'styled-components';
-import SidebarOption from './SidebarOption';
-import { useCollection } from "react-firebase-hooks/firestore";
-import { collection, addDoc } from "firebase/firestore";
-import {db} from '@/firebase'
+import styled from 'styled-components'
+import { useCollection } from 'react-firebase-hooks/firestore'
+import { addDoc, collection } from 'firebase/firestore'
+import SidebarOption from './SidebarOption'
+import { db } from '@/firebase'
 
 function Sidebar() {
-  const [channels,loading,error] = useCollection(collection(db, "rooms"))
+  const [channels, loading, error] = useCollection(collection(db, 'rooms'))
   console.log(channels)
   return (
     <SidebarContainer>
@@ -33,15 +33,15 @@ function Sidebar() {
       <SidebarOption Icon={ExpandMore} title="Channels" />
       <hr />
       <SidebarOption Icon={Add} title="Add Channel" addChannelOption/>
-      {channels?.docs.map(doc=>{
-        return <SidebarOption id={doc.id}  key={doc.id} title={doc.data().name} />
+      {channels?.docs.map((doc) => {
+        return <SidebarOption id={doc.id} key={doc.id} title={doc.data().name} />
       })
       }
     </SidebarContainer>
   )
 }
 
-export default Sidebar;
+export default Sidebar
 
 const SidebarContainer = styled.div`
   background-color: var(--slack-color);
@@ -68,7 +68,7 @@ padding: 13px;
     background-color: white;
     border-radius: 999px;
 }
-`;
+`
 
 const SidebarInfo = styled.div`
 flex: 1;
@@ -89,4 +89,4 @@ flex: 1;
     margin-right: 2px;
     color: green;
 }
-`;
+`
