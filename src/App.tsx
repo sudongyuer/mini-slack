@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import './App.css'
-import { Routes, Route, Link } from "react-router-dom";
-import Header from './components/Header';
-import styled from 'styled-components';
-import Sidebar from './components/Siderbar';
-import Chat from './components/Chat';
+import { Link, Route, Routes } from 'react-router-dom'
+import styled from 'styled-components'
+import Header from './components/Header'
+import Sidebar from './components/Siderbar'
+import Chat from './components/Chat'
 
 function App() {
   const [count, setCount] = useState(0)
