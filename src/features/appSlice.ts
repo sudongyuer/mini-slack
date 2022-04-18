@@ -1,26 +1,27 @@
-import { RootState } from "@/app/store";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import type { RootState } from '@/app/store'
 
-type initialState={
-  roomId : string|null
+interface initialState {
+  roomId: string|null
 }
-const initialState:initialState={
+const initialState: initialState = {
   roomId: null,
 }
 export const appSlice = createSlice({
-  name: "app",
+  name: 'app',
   initialState,
   reducers: {
-    enterRoom: (state, action:PayloadAction<initialState>) => {
-      console.log(action);
-      
-      state.roomId = action.payload.roomId;
+    enterRoom: (state, action: PayloadAction<initialState>) => {
+      console.log(action)
+
+      state.roomId = action.payload.roomId
     },
   },
-});
+})
 
-export const { enterRoom } = appSlice.actions;
+export const { enterRoom } = appSlice.actions
 
-export const selectRoomId = (state:RootState) => state.app.roomId;
+export const selectRoomId = (state: RootState) => state.app.roomId
 
-export default appSlice.reducer;
+export default appSlice.reducer
