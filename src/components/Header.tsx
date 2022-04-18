@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AccountCircleSharp, AccessTime, Search , HelpOutline } from '@mui/icons-material';
+import { AccessTime, AccountCircleSharp, HelpOutline, Search } from '@mui/icons-material'
 function Header() {
   return (
     <HeaderContainer>
