@@ -1,4 +1,4 @@
-import { collection, doc, serverTimestamp, setDoc } from 'firebase/firestore'
+import { collection, doc, serverTimestamp, setDoc,addDoc } from 'firebase/firestore'
 import { Button } from '@mui/material'
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
@@ -9,14 +9,18 @@ function ChatInput({ channelId, channelName }: any) {
     e.preventDefault()// prevent refresh
     if (!channelId)
       return false
-
     const docRef = doc(db, 'rooms', channelId)
-    setDoc(docRef, {
+    const colllectionRef=collection(docRef, 'messages')
+    addDoc(colllectionRef, {
       message: input,
       timestamp: serverTimestamp(),
       user: 'Sudongyuer',
       userImage: 'https://p9-passport.byteacctimg.com/img/user-avatar/1a85c9561d83fc5e8a441432767677fb~300x300.image',
-    }, { merge: true })
+    })
+    //返回的是doc的ID
+    // .then((outFiled)=>{
+    //   console.log(outFiled.id)
+    // })
     setInput('')
   }
   return (
