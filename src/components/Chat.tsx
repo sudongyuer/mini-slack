@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { InfoOutlined, StarBorder } from '@mui/icons-material'
-import { collection, doc } from 'firebase/firestore'
+import { collection, doc,orderBy,query } from 'firebase/firestore'
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore'
 import ChatInput from './ChatInput'
 import { useAppSelector } from '@/app/hooks'
@@ -12,8 +12,10 @@ function Chat() {
   const roomId = useAppSelector(selectRoomId)
   const docRef = roomId && doc(db, 'rooms', roomId as string)
   const [roomDetails] = useDocument(docRef as any)
-  const [roomMessage] = useCollection()
-  console.log(roomDetails)
+  const [roomMessages] = useCollection(roomId as null && query(collection( db,'rooms',roomId as string,'messages'),orderBy('timestamp','asc')))
+  console.log('roomDetails',roomDetails?.data())
+  // TODO
+  console.log('roomMessage',roomMessages?.docs[0].data())
   return (
     <ChatContainer>
       <>
