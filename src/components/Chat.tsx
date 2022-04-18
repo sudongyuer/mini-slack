@@ -7,6 +7,7 @@ import ChatInput from './ChatInput'
 import { useAppSelector } from '@/app/hooks'
 import { selectRoomId } from '@/features/appSlice'
 import { db } from '@/firebase'
+
 function Chat() {
   const roomId = useAppSelector(selectRoomId)
   const docRef = roomId && doc(db, 'rooms', roomId as string)
