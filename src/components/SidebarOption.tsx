@@ -1,52 +1,52 @@
 import type { SvgIconComponent } from '@mui/icons-material'
 import React from 'react'
 import styled from 'styled-components'
-import {db} from '@/firebase'
-import { collection, addDoc } from "firebase/firestore";
-import {enterRoom} from '@/features/appSlice'
-import { useAppDispatch } from '@/app/hooks';
-type SidebarOptionProps = {
-  Icon?: SvgIconComponent,
-  title: string,
+import { addDoc, collection } from 'firebase/firestore'
+import { db } from '@/firebase'
+import { enterRoom } from '@/features/appSlice'
+import { useAppDispatch } from '@/app/hooks'
+interface SidebarOptionProps {
+  Icon?: SvgIconComponent
+  title: string
   addChannelOption?: boolean
   id?: string
 }
 
-
-function SidebarOption({ Icon, title,addChannelOption,id}: SidebarOptionProps) {
+function SidebarOption({ Icon, title, addChannelOption, id }: SidebarOptionProps) {
   const dispatch = useAppDispatch()
-const addChannel = async ()=>{
-
-  const channelName = prompt('Please enter the channel name');
-  try {
-    const docRef = await addDoc(collection(db, "rooms"), {
-      name:channelName,
-    });
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
+  const addChannel = async() => {
+    const channelName = prompt('Please enter the channel name')
+    try {
+      const docRef = await addDoc(collection(db, 'rooms'), {
+        name: channelName,
+      })
+      console.log('Document written with ID: ', docRef.id)
+    }
+    catch (e) {
+      console.error('Error adding document: ', e)
+    }
   }
-}
 
-const selectChannel = ()=>{
-  if(id){
-    dispatch(enterRoom({roomId:id}))
+  const selectChannel = () => {
+    if (id)
+      dispatch(enterRoom({ roomId: id }))
   }
-}
   return (
     <SidebarContainer
     onClick={addChannelOption ? addChannel : selectChannel}
     >
-      {Icon && <Icon fontSize='small' style={{ padding: 10 }} />}
-      {Icon ?(
+      {Icon && <Icon fontSize="small" style={{ padding: 10 }} />}
+      {Icon
+        ? (
         <h3>
           {title}
         </h3>
-      ):(
+          )
+        : (
         <SidebarOptionChannel>
           <span>#</span>{title}
         </SidebarOptionChannel>
-      )
+          )
       }
     </SidebarContainer>
   )
@@ -75,7 +75,7 @@ cursor: pointer;
 }
 `
 
-const SidebarOptionChannel=styled.h3`
+const SidebarOptionChannel = styled.h3`
 padding: 10px 0;
 font-weight: 300;
 `
