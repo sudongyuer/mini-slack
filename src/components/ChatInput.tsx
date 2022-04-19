@@ -28,7 +28,7 @@ function ChatInput({ channelId, channelName }: any) {
       <form>
         <input
           value={input}
-          placeholder={'Message #ROOM'}
+          placeholder={`Message #${channelName}`}
           onChange={e => setInput(e.target.value)}
         />
         <Button hidden type="submit" onClick={sendMessage}>
