@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import './App.css'
 import { Link, Route, Routes } from 'react-router-dom'
 import styled from 'styled-components'
@@ -8,10 +8,9 @@ import Chat from './components/Chat'
 
 function App() {
   const [count, setCount] = useState(0)
-
   return (
     <div className="App">
-      <Header />
+      <Header/>
       <AppBody>
         <Sidebar />
         <Routes>
