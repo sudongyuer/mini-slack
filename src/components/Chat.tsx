@@ -7,6 +7,7 @@ import ChatInput from './ChatInput'
 import { useAppSelector } from '@/app/hooks'
 import { selectRoomId } from '@/features/appSlice'
 import { db } from '@/firebase'
+import Message from './Message'
 
 function Chat() {
   const roomId = useAppSelector(selectRoomId)
@@ -15,13 +16,13 @@ function Chat() {
   const [roomMessages] = useCollection(roomId as null && query(collection( db,'rooms',roomId as string,'messages'),orderBy('timestamp','asc')))
   console.log('roomDetails',roomDetails?.data())
   // TODO
-  console.log('roomMessage',roomMessages?.docs[0].data())
+  console.log('roomMessage',roomMessages?.docs[0]?.data())
   return (
     <ChatContainer>
       <>
         <Header>
           <HeaderLeft>
-            <h4><strong>#Room-name</strong></h4>
+            <h4><strong>#{roomDetails?.data()?.name}</strong></h4>
             <StarBorder />
           </HeaderLeft>
           <HeaderRight>
@@ -33,6 +34,19 @@ function Chat() {
 
         <ChatMessages>
           {/* List out the messages */}
+          {roomMessages?.docs.map(doc=>{
+            const {message , timestamp , user ,userImage}= doc.data()
+            return (
+              <Message 
+                key={doc.id}
+                message={message}
+                timestamp={timestamp}
+                user={user}
+                userImage={userImage}
+              />
+            )
+          })}
+          <ChatButtom/>
         </ChatMessages>
         <ChatInput channelName={roomDetails?.data()?.name} channelId={roomId} />
       </>
@@ -41,6 +55,10 @@ function Chat() {
 }
 
 export default Chat
+
+const ChatButtom = styled.div`
+padding-bottom: 200px;
+`
 
 const Header = styled.div`
   display: flex;
