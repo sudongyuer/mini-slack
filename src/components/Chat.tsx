@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { InfoOutlined, StarBorder } from '@mui/icons-material'
 import { collection, doc,orderBy,query } from 'firebase/firestore'
@@ -10,13 +10,18 @@ import { db } from '@/firebase'
 import Message from './Message'
 
 function Chat() {
+  const chatRef = useRef<HTMLDivElement>(null)
   const roomId = useAppSelector(selectRoomId)
   const docRef = roomId && doc(db, 'rooms', roomId as string)
   const [roomDetails] = useDocument(docRef as any)
-  const [roomMessages] = useCollection(roomId as null && query(collection( db,'rooms',roomId as string,'messages'),orderBy('timestamp','asc')))
+  const [roomMessages,loading] = useCollection(roomId as null && query(collection( db,'rooms',roomId as string,'messages'),orderBy('timestamp','asc')))
   console.log('roomDetails',roomDetails?.data())
   // TODO
   console.log('roomMessage',roomMessages?.docs[0]?.data())
+
+  useEffect(()=>{
+    chatRef?.current?.scrollIntoView({ behavior: 'smooth' })
+  },[roomId,loading])
   return (
     <ChatContainer>
       <>
@@ -46,7 +51,7 @@ function Chat() {
               />
             )
           })}
-          <ChatButtom/>
+          <ChatButtom ref={chatRef}/>
         </ChatMessages>
         <ChatInput channelName={roomDetails?.data()?.name} channelId={roomId} />
       </>
@@ -58,6 +63,7 @@ export default Chat
 
 const ChatButtom = styled.div`
 padding-bottom: 200px;
+background-color: red;
 `
 
 const Header = styled.div`
