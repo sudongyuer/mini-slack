@@ -16,6 +16,9 @@ function SidebarOption({ Icon, title, addChannelOption, id }: SidebarOptionProps
   const dispatch = useAppDispatch()
   const addChannel = async() => {
     const channelName = prompt('Please enter the channel name')
+    if(!channelName){
+      return
+    }
     try {
       const docRef = await addDoc(collection(db, 'rooms'), {
         name: channelName,
