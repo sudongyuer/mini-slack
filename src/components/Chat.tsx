@@ -34,7 +34,7 @@ function Chat() {
         <ChatMessages>
           {/* List out the messages */}
         </ChatMessages>
-        <ChatInput channelId={roomId} />
+        <ChatInput channelName={roomDetails?.data()?.name} channelId={roomId} />
       </>
     </ChatContainer>
   )
