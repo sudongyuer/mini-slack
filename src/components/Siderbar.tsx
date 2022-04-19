@@ -13,7 +13,7 @@ function Sidebar() {
     <SidebarContainer>
       <SidebarHeader>
         <SidebarInfo>
-          <h2>PAPA FAM HQ</h2>
+          <h2>SUDONGYUER🐟 FAM HQ</h2>
           <h3>
             <FiberManualRecord />
             Sudongyuer
