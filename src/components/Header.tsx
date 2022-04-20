@@ -1,12 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AccessTime, AccountCircleSharp, HelpOutline, Search } from '@mui/icons-material'
+import { AccessTime, HelpOutline, Search } from '@mui/icons-material'
+import { Avatar } from '@mui/material'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from '@/firebase'
 function Header() {
+  const [user] = useAuthState(auth)
   return (
     <HeaderContainer>
       {/* Header Left */}
       <HeaderLeft>
-        <HeaderAvatar />
+        <HeaderAvatar
+        onClick={() => {
+          auth.signOut()
+        }}
+        alt={user?.displayName as string}
+        src={user?.photoURL as string}
+        />
         <AccessTime />
       </HeaderLeft>
       {/* Header Search */}
@@ -42,7 +52,7 @@ const HeaderLeft = styled.div`
     margin-right: 30px;
   }
 `
-const HeaderAvatar = styled(AccountCircleSharp)`
+const HeaderAvatar = styled(Avatar)`
   cursor: pointer;
   :hover{
     opacity: 0.8;
