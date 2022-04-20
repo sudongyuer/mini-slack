@@ -1,23 +1,25 @@
-import { collection, doc, serverTimestamp, setDoc,addDoc } from 'firebase/firestore'
+import { addDoc, collection, doc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { Button } from '@mui/material'
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
-import { db } from '@/firebase'
-function ChatInput({ channelId, channelName ,chatRef }: any) {
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth, db } from '@/firebase'
+function ChatInput({ channelId, channelName, chatRef }: any) {
+  const [user] = useAuthState(auth)
   const [input, setInput] = useState('')
   const sendMessage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()// prevent refresh
     if (!channelId)
       return false
     const docRef = doc(db, 'rooms', channelId)
-    const colllectionRef=collection(docRef, 'messages')
+    const colllectionRef = collection(docRef, 'messages')
     addDoc(colllectionRef, {
       message: input,
       timestamp: serverTimestamp(),
-      user: 'Sudongyuer',
-      userImage: 'https://p9-passport.byteacctimg.com/img/user-avatar/1a85c9561d83fc5e8a441432767677fb~300x300.image',
+      user: user?.displayName,
+      userImage: user?.photoURL,
     })
-    //返回的是doc的ID
+    // 返回的是doc的ID
     // .then((outFiled)=>{
     //   console.log(outFiled.id)
     // })
