@@ -3,7 +3,7 @@ import { Button } from '@mui/material'
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { db } from '@/firebase'
-function ChatInput({ channelId, channelName }: any) {
+function ChatInput({ channelId, channelName ,chatRef }: any) {
   const [input, setInput] = useState('')
   const sendMessage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()// prevent refresh
@@ -21,6 +21,7 @@ function ChatInput({ channelId, channelName }: any) {
     // .then((outFiled)=>{
     //   console.log(outFiled.id)
     // })
+    chatRef?.current?.scrollIntoView({ behavior: 'smooth' })
     setInput('')
   }
   return (
