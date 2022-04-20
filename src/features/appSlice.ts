@@ -5,6 +5,7 @@ import type { RootState } from '@/app/store'
 interface initialState {
   roomId: string|null
 }
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 const initialState: initialState = {
   roomId: null,
 }
