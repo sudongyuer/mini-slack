@@ -1,15 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
-type props = {
-  message:string,
-  timestamp:any
-  user:string
-  userImage:string
+interface props {
+  message: string
+  timestamp: any
+  user: string
+  userImage: string
 }
-function Message({message,timestamp,user,userImage}:props) {
-  console.log(timestamp);
-  
+function Message({ message, timestamp, user, userImage }: props) {
+  console.log(timestamp)
+
   return (
     <MessageContainer>
       <img src={userImage} alt="" />
