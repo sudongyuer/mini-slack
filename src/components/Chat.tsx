@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { InfoOutlined, StarBorder } from '@mui/icons-material'
-import { collection, doc,orderBy,query } from 'firebase/firestore'
+import { collection, doc, orderBy, query } from 'firebase/firestore'
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore'
 import ChatInput from './ChatInput'
 import { useAppSelector } from '@/app/hooks'
@@ -14,47 +14,49 @@ function Chat() {
   const roomId = useAppSelector(selectRoomId)
   const docRef = roomId && doc(db, 'rooms', roomId as string)
   const [roomDetails] = useDocument(docRef as any)
-  const [roomMessages,loading] = useCollection(roomId as null && query(collection( db,'rooms',roomId as string,'messages'),orderBy('timestamp','asc')))
-  console.log('roomDetails',roomDetails?.data())
+  const [roomMessages, loading] = useCollection(roomId as null && query(collection(db, 'rooms', roomId as string, 'messages'), orderBy('timestamp', 'asc')))
+  console.log('roomDetails', roomDetails?.data())
   // TODO
-  console.log('roomMessage',roomMessages?.docs[0]?.data())
+  console.log('roomMessage', roomMessages?.docs[0]?.data())
 
-  useEffect(()=>{
+  useEffect(() => {
     chatRef?.current?.scrollIntoView({ behavior: 'smooth' })
-  },[roomId,loading])
+  }, [roomId, loading])
   return (
     <ChatContainer>
-      <>
-        <Header>
-          <HeaderLeft>
-            <h4><strong>#{roomDetails?.data()?.name}</strong></h4>
-            <StarBorder />
-          </HeaderLeft>
-          <HeaderRight>
-            <p>
-              <InfoOutlined /> Details
-            </p>
-          </HeaderRight>
-        </Header>
+      {roomDetails && roomMessages && (
+        <>
+          <Header>
+            <HeaderLeft>
+              <h4><strong>#{roomDetails?.data()?.name}</strong></h4>
+              <StarBorder />
+            </HeaderLeft>
+            <HeaderRight>
+              <p>
+                <InfoOutlined /> Details
+              </p>
+            </HeaderRight>
+          </Header>
 
-        <ChatMessages>
-          {/* List out the messages */}
-          {roomMessages?.docs.map(doc=>{
-            const {message , timestamp , user ,userImage}= doc.data()
-            return (
-              <Message 
-                key={doc.id}
-                message={message}
-                timestamp={timestamp}
-                user={user}
-                userImage={userImage}
-              />
-            )
-          })}
-          <ChatButtom ref={chatRef}/>
-        </ChatMessages>
-        <ChatInput channelName={roomDetails?.data()?.name} channelId={roomId} />
-      </>
+          <ChatMessages>
+            {/* List out the messages */}
+            {roomMessages?.docs.map(doc => {
+              const { message, timestamp, user, userImage } = doc.data()
+              return (
+                <Message
+                  key={doc.id}
+                  message={message}
+                  timestamp={timestamp}
+                  user={user}
+                  userImage={userImage}
+                />
+              )
+            })}
+            <ChatButtom ref={chatRef} />
+          </ChatMessages>
+          <ChatInput chatRef={chatRef} channelName={roomDetails?.data()?.name} channelId={roomId} />
+        </>
+      )}
     </ChatContainer>
   )
 }
