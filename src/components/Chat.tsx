@@ -4,10 +4,10 @@ import { InfoOutlined, StarBorder } from '@mui/icons-material'
 import { collection, doc, orderBy, query } from 'firebase/firestore'
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore'
 import ChatInput from './ChatInput'
+import Message from './Message'
 import { useAppSelector } from '@/app/hooks'
 import { selectRoomId } from '@/features/appSlice'
 import { db } from '@/firebase'
-import Message from './Message'
 
 function Chat() {
   const chatRef = useRef<HTMLDivElement>(null)
@@ -40,7 +40,7 @@ function Chat() {
 
           <ChatMessages>
             {/* List out the messages */}
-            {roomMessages?.docs.map(doc => {
+            {roomMessages?.docs.map((doc) => {
               const { message, timestamp, user, userImage } = doc.data()
               return (
                 <Message
@@ -65,7 +65,6 @@ export default Chat
 
 const ChatButtom = styled.div`
 padding-bottom: 200px;
-background-color: red;
 `
 
 const Header = styled.div`
