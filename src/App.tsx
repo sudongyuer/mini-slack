@@ -2,6 +2,7 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import styled from 'styled-components'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import HashLoader from 'react-spinners/HashLoader'
 import Header from './components/Header'
 import Sidebar from './components/Siderbar'
 import Chat from './components/Chat'
@@ -18,6 +19,7 @@ function App() {
             src="https://cdn.mos.cms.futurecdn.net/SDDw7CnuoUGax6x9mTo7dd.jpg"
             alt=""
           />
+          <HashLoader color={'#6cd4b8'} loading={loading} size={50} />
         </AppLoadingContents>
       </AppLoading>
     )
