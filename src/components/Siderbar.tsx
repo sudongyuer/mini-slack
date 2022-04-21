@@ -33,15 +33,22 @@ function Sidebar() {
       <SidebarOption Icon={ExpandMore} title="Channels" />
       <hr />
       <SidebarOption Icon={Add} title="Add Channel" addChannelOption/>
+      <ChannelsContainer>
       {channels?.docs.map((doc) => {
         return <SidebarOption id={doc.id} key={doc.id} title={doc.data().name} />
       })
       }
+      </ChannelsContainer>
     </SidebarContainer>
   )
 }
 
 export default Sidebar
+
+const ChannelsContainer = styled.div`
+overflow-y: scroll;
+flex: 1;
+`
 
 const SidebarContainer = styled.div`
   background-color: var(--slack-color);
@@ -50,7 +57,11 @@ color: white;
 border-top: 1px solid #49274b;
 max-width: 260px;
 margin-top: 46px;
-
+height: 100vh;
+min-width: 150px;
+overflow: scroll;
+display: flex;
+flex-direction: column;
 >  hr {
   margin-top: 10px;
   margin-bottom: 10px;
