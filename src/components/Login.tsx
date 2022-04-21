@@ -2,15 +2,22 @@ import { Button } from '@mui/material'
 import type { MouseEvent } from 'react'
 import React from 'react'
 import styled from 'styled-components'
-import { signInWithPopup } from 'firebase/auth'
+import { signInWithPopup, signInWithRedirect } from 'firebase/auth'
+import { isMobile } from 'react-device-detect'
 import { auth, provider } from '@/firebase'
-
 function Login() {
   const signIn = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    signInWithPopup(auth, provider).catch((error) => {
-      alert(error.message)
-    })
+    if (isMobile) {
+      signInWithRedirect(auth, provider).catch((error) => {
+        alert(error.message)
+      })
+    }
+    else {
+      signInWithPopup(auth, provider).catch((error) => {
+        alert(error.message)
+      })
+    }
   }
   return (
     <LoginContainer>
