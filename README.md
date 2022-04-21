@@ -14,7 +14,7 @@
 - Firebase
 - pnpm
 
-![](https://tva1.sinaimg.cn/large/e6c9d24egy1h1h9fjf42xj21gf0q6did.jpg)
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h1hbqib8eoj21hb0q4diq.jpg)
 
 ## 如何使用
 
