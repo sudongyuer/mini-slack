@@ -73,6 +73,7 @@ border-radius: 20px;
 }
 
 > form > div >input{
+  width: 80%;
     padding: 20px;
     outline: none;
     border: none;
