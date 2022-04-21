@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AccessTime, HelpOutline, Search } from '@mui/icons-material'
+import { AccessTime, GitHub, HelpOutline, Search } from '@mui/icons-material'
 import { Avatar } from '@mui/material'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '@/firebase'
@@ -26,7 +26,12 @@ function Header() {
       </HeaderSearch>
       {/* Header Right */}
       <HeaderRight>
-        <HelpOutline />
+        <span>star🌟</span>
+        <GitHubContainer
+        onClick={() => {
+          window.open('https://github.com/sudongyuer/mini-slack', '_blank')
+        }}
+        />
       </HeaderRight>
     </HeaderContainer>
   )
@@ -81,10 +86,20 @@ const HeaderRight = styled.div`
 flex: 0.3;
 display: flex;
 align-items: center;
-> .MuiSvgIcon-root{
+>span{
+  flex: 1;
+  margin-left: auto;
+  text-align: right;
+  font-weight: 500;
+  padding-right: 10px;
+}
+>.MuiSvgIcon-root{
   margin-left: auto;
   margin-right: 20px;
 }
+`
+const GitHubContainer = styled(GitHub)`
+cursor: pointer;
 `
 
 export default Header
