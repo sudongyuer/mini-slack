@@ -54,7 +54,7 @@ const SidebarContainer = styled.div`
   background-color: var(--slack-color);
 flex: 0.3;
 color: white;
-border-top: 1px solid #49274b;
+border-top: 1px solid #cccccc;
 max-width: 260px;
 margin-top: 46px;
 height: 100vh;
@@ -65,16 +65,16 @@ flex-direction: column;
 >  hr {
   margin-top: 10px;
   margin-bottom: 10px;
-  border: 1px solid #49274b
+  border: 1px solid #cccccc
 }
 `
 const SidebarHeader = styled.div`
 display: flex;
-border-bottom: 1px solid #49274b;
+border-bottom: 1px solid #cccccc;
 padding: 13px;
 >  .MuiSvgIcon-root {
     padding: 8px;
-    color: #49274b;
+    color: #cccccc;
     font-size: 18px;
     background-color: white;
     border-radius: 999px;
