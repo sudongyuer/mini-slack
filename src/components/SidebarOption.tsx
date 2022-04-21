@@ -66,7 +66,7 @@ cursor: pointer;
 
 :hover{
   opacity: 0.9;
-  background-color: #340336;
+  background-color: #439bfb;
 }
 
 >h3{
