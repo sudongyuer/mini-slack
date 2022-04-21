@@ -1,6 +1,7 @@
 import { addDoc, collection, doc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { Button } from '@mui/material'
 import React, { useRef, useState } from 'react'
+import SendIcon from '@mui/icons-material/Send'
 import styled from 'styled-components'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, db } from '@/firebase'
@@ -9,6 +10,11 @@ function ChatInput({ channelId, channelName, chatRef }: any) {
   const [input, setInput] = useState('')
   const sendMessage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()// prevent refresh
+    if (input.trim() === '') {
+      setInput('')
+      return
+    }
+
     if (!channelId)
       return false
     const docRef = doc(db, 'rooms', channelId)
@@ -29,14 +35,16 @@ function ChatInput({ channelId, channelName, chatRef }: any) {
   return (
     <ChatInputContainer>
       <form>
+        <div>
         <input
           value={input}
           placeholder={`Message #${channelName}`}
           onChange={e => setInput(e.target.value)}
         />
-        <Button hidden type="submit" onClick={sendMessage}>
+        <Button type="submit" onClick={sendMessage} endIcon={<SendIcon/>}>
           SEND
         </Button>
+        </div>
       </form>
     </ChatInputContainer>
   )
@@ -52,17 +60,27 @@ border-radius: 20px;
   justify-content: center;
 }
 
-> form > input{
-   position: fixed;
+> form > div{
+    position: fixed;
     bottom: 30px;
+    padding: 10px;
     width: 60%;
     border: 1px solid gray;
     border-radius: 3px;
-    padding: 20px;
     outline: none;
+    display: flex;
+    justify-content: space-between;
 }
 
-> form >button{
-  display: none !important;
+> form > div >input{
+    padding: 20px;
+    outline: none;
+    border: none;
+}
+
+>form>div>button{
+  background-color: #c0bfc0 !important;
+  color: white;
+  text-transform: inherit;
 }
 `
