@@ -57,7 +57,7 @@ color: white;
 border-top: 1px solid #cccccc;
 max-width: 260px;
 margin-top: 46px;
-height: 100vh;
+overflow-y: scroll;
 min-width: 150px;
 overflow: scroll;
 display: flex;
