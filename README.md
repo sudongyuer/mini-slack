@@ -18,7 +18,7 @@
 
 ## 如何使用
 
-- 在浏览器输入 `https://mini-slack.vercel.app/`
+- 点击这个链接👉 [mini-slack](https://mini-slack.vercel.app/)
 
 - 使用Google账号进行登录
 
