@@ -17,6 +17,7 @@
     "@reduxjs/toolkit": "^1.8.1",
     "add": "^2.0.6",
     "react": "^17.0.2",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^17.0.2",
     "react-firebase-hooks": "^5.0.3",
     "react-is": "^18.0.0",
