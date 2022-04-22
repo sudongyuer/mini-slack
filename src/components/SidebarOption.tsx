@@ -10,19 +10,28 @@ interface SidebarOptionProps {
   title: string
   addChannelOption?: boolean
   id?: string
+  secretKey?: string | null
 }
 
-function SidebarOption({ Icon, title, addChannelOption, id }: SidebarOptionProps) {
+function SidebarOption({ Icon, title, addChannelOption, id, secretKey }: SidebarOptionProps) {
   const dispatch = useAppDispatch()
   const addChannel = async() => {
     const channelName = prompt('Please enter the channel name')
     if (!channelName)
       return
-
+    const isSecret = window.confirm('Are you sure you want to make this channel secret?')
+    let secretKey
+    if (isSecret)
+      secretKey = prompt('Please enter the secret key')
     try {
-      const docRef = await addDoc(collection(db, 'rooms'), {
-        name: channelName,
-      })
+      const docRef = await addDoc(collection(db, 'rooms'), secretKey?.trim()
+        ? {
+            name: channelName,
+            secretKey,
+          }
+        : {
+            name: channelName,
+          })
       console.log('Document written with ID: ', docRef.id)
     }
     catch (e) {
@@ -31,8 +40,17 @@ function SidebarOption({ Icon, title, addChannelOption, id }: SidebarOptionProps
   }
 
   const selectChannel = () => {
-    if (id)
-      dispatch(enterRoom({ roomId: id }))
+    if (secretKey) {
+      const inputSecretKey = prompt('Please enter the secret key')
+      if (inputSecretKey === secretKey && id)
+        dispatch(enterRoom({ roomId: id }))
+      else
+        alert('Wrong secret key')
+    }
+    else {
+      if (id)
+        dispatch(enterRoom({ roomId: id }))
+    }
   }
   return (
     <SidebarContainer
