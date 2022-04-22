@@ -18,7 +18,7 @@ function Chat() {
   console.log('roomDetails', roomDetails?.data())
   // TODO
   console.log('roomMessage', roomMessages?.docs[0]?.data())
-
+  // return <></>
   useEffect(() => {
     chatRef?.current?.scrollIntoView({ behavior: 'smooth' })
   }, [roomId, loading, roomMessages])
